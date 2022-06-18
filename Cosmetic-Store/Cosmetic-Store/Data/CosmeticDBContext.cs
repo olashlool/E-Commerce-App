@@ -1,9 +1,14 @@
-﻿using Cosmetic_Store.Models;
+﻿using Cosmetic_Store.Auth.Model;
+using Cosmetic_Store.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace Cosmetic_Store.Data
 {
-    public class CosmeticDBContext : DbContext
+    public class CosmeticDBContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -39,6 +44,93 @@ namespace Cosmetic_Store.Data
               new Product { ProductId = 12, CategoryId = 4, Name = "Missha Foundation", Description = "This M Perfect Cover BB Cream makes your skin tone clean and chic by concealing blemishes with excellent skin coverage it is a multi functional makeup cream with blocking UV rays, whitening and wrinkle care effects and simplifies makeup formalities its moisturized application with W/S texture makes sleek skin tone while supplying moisture and nutrition at the same time.", Price = 8.0f, ImageURL = "/images/Foundation/Missha.PNG" }
 
             );
+
+            // any unique string id
+            const string ADMIN_ID = "abcbe9c0";
+            const string ADMIN_ROLE_ID = "ad376a8ff";
+
+            const string EDITOR_ID = "abcze710";
+            const string EDITOR_ROLE_ID = "bd586a8ff";
+
+            // create an Admin role
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = ADMIN_ROLE_ID,
+                Name = "Administrator",
+                NormalizedName = "Admin"
+            }, new IdentityRole
+            {
+                Id = EDITOR_ROLE_ID,
+                Name = "Editor",
+                NormalizedName = "EDITOR"
+            });
+
+            // create a User
+            var hasher = new PasswordHasher<ApplicationUser>();
+            modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
+            {
+                Id = ADMIN_ID,
+                UserName = "admin",
+                NormalizedUserName = "admin",
+                Email = "admin@gmail.com",
+                NormalizedEmail = "admin@gmail.com",
+                EmailConfirmed = false,
+                PasswordHash = hasher.HashPassword(null, "@dmin123"),
+                SecurityStamp = string.Empty
+            },
+            new ApplicationUser
+            {
+                Id = EDITOR_ID,
+                UserName = "editor",
+                NormalizedUserName = "editor",
+                Email = "editor@gmail.com",
+                NormalizedEmail = "editor@gmail.com",
+                EmailConfirmed = false,
+                PasswordHash = hasher.HashPassword(null, "Edit0r123"),
+                SecurityStamp = string.Empty
+            });
+
+            // assign that user to the admin role
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = ADMIN_ROLE_ID,
+                UserId = ADMIN_ID
+            },
+            new IdentityUserRole<string>
+            {
+                RoleId = EDITOR_ROLE_ID,
+                UserId = EDITOR_ID
+            });
+
+
+            SeedRole(modelBuilder, "admin", "create", "delete");
+            SeedRole(modelBuilder, "editor", "update");
+        }
+        private int nextId = 1; // we need this to generate a unique id on our own
+        private void SeedRole(ModelBuilder modelBuilder, string roleName, params string[] permissions)
+        {
+            var role = new IdentityRole
+            {
+                Id = roleName.ToLower(),
+                Name = roleName,
+                NormalizedName = roleName.ToUpper(),
+                ConcurrencyStamp = Guid.Empty.ToString()
+            };
+
+            modelBuilder.Entity<IdentityRole>().HasData(role);
+
+            // Go through the permissions list (the params) and seed a new entry for each
+            var roleClaims = permissions.Select(permission =>
+            new IdentityRoleClaim<string>
+            {
+                Id = nextId++,
+                RoleId = role.Id,
+                ClaimType = "permissions", // This matches what we did in Startup.cs
+                ClaimValue = permission
+            }).ToArray();
+
+            modelBuilder.Entity<IdentityRoleClaim<string>>().HasData(roleClaims);
         }
     }
 }
+

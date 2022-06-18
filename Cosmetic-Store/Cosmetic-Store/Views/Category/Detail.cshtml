@@ -1,8 +1,10 @@
 ﻿@model Cosmetic_Store.Models.Category
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-
-<button style="position:fixed; right:25px; bottom:25px; background-color:forestgreen; height:50px"><a style="color:aliceblue" asp-controller = "Category" asp-action= "AddProduct" asp-route-CategoryId = "@Model.CategoryId">Create New Product</a></button>
+@if (signInManager.IsSignedIn(User) && (User.IsInRole("Administrator")||User.IsInRole("Editor")))
+{
+    <button style="position:fixed; right:25px; bottom:25px; background-color:forestgreen; height:50px"><a style="color:aliceblue" asp-controller = "Product" asp-action= "Create" asp-route-CategoryId = "@Model.CategoryId">Create New Product</a></button>
+}
 
 <div class="card mb-3 text-center" style="display: contents">
   <div class="row no-gutters" style="padding-top:60px">
@@ -50,8 +52,14 @@
 
 <div>
      <button><a asp-controller = "Category" asp-action= "Index" class="btn btn-primary btn-lg">Back</a></button> 
-     <button><a asp-controller = "Category" asp-action= "Edit" asp-route-id ="@Model.CategoryId" class="btn btn-success btn-lg">Edit</a></button>
-     <button><a asp-controller = "Category" asp-action= "Delete" asp-route-id ="@Model.CategoryId" class="btn btn-danger btn-lg">Delete</a></button>
+     @if (signInManager.IsSignedIn(User) && User.IsInRole("Editor"))
+    {
+        <button><a asp-controller = "Category" asp-action= "Edit" asp-route-id ="@Model.CategoryId" class="btn btn-success btn-lg">Edit</a></button>
+    }
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+    {
+        <button><a asp-controller = "Category" asp-action= "Delete" asp-route-id ="@Model.CategoryId" class="btn btn-danger btn-lg">Delete</a></button>
+    }
 </div>
 
 
