@@ -43,22 +43,25 @@ namespace Cosmetic_Store
                 options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<CosmeticDBContext>();
 
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.AccessDeniedPath = "/auth/index";
-            });
+            //services.ConfigureApplicationCookie(options =>
+            //{
+            //    options.AccessDeniedPath = "/auth/index";
+            //});
+
+            services.AddAuthentication();
+            services.AddAuthorization();
 
             services.AddTransient<ICategory, CategoryServices>();
             services.AddTransient<IProduct, ProductServices>();
             services.AddTransient<IUserService, UserService>();
 
-            //services.AddAuthorization(options =>
-            //{
-            //    // Add "Name of Policy", and the Lambda returns a definition
-            //    options.AddPolicy("create", policy => policy.RequireClaim("permissions", "create"));
-            //    options.AddPolicy("update", policy => policy.RequireClaim("permissions", "update"));
-            //    options.AddPolicy("delete", policy => policy.RequireClaim("permissions", "delete"));
-            //});
+            services.AddAuthorization(options =>
+            {
+                // Add "Name of Policy", and the Lambda returns a definition
+                options.AddPolicy("create", policy => policy.RequireClaim("permissions", "create"));
+                options.AddPolicy("update", policy => policy.RequireClaim("permissions", "update"));
+                options.AddPolicy("delete", policy => policy.RequireClaim("permissions", "delete"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

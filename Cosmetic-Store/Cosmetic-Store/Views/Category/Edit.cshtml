@@ -2,7 +2,7 @@
 @model Cosmetic_Store.Models.Category
 
 
-<form class="form-horizontal" asp-controller="Category" asp-action="Edit" method="post" style="padding-top:80px">
+<form class="form-horizontal" asp-controller="Category" asp-action="Edit" method="post" style="padding-top:80px" enctype="multipart/form-data">
    <input hidden asp-for="@Model.CategoryId"/>
     <fieldset>
         <!-- Form Name -->
