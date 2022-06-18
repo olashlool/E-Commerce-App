@@ -2,7 +2,7 @@
 @model Cosmetic_Store.Models.Product
 
 
-<form class="form-horizontal" asp-controller="Product" asp-action="Create" method="post" style="padding-top:80px">
+<form class="form-horizontal" asp-controller="Product" asp-action="Create" method="post" style="padding-top:80px" enctype="multipart/form-data">
        <input hidden asp-for="@Model.ProductId"/>
 <fieldset>
 <!-- Form Name -->

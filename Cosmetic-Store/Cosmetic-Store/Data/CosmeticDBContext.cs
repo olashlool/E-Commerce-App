@@ -103,8 +103,8 @@ namespace Cosmetic_Store.Data
             });
 
 
-            SeedRole(modelBuilder, "admin", "create", "delete");
-            SeedRole(modelBuilder, "editor", "update");
+            SeedRole(modelBuilder, "Administrator", "create", "delete");
+            SeedRole(modelBuilder, "Editor", "update");
         }
         private int nextId = 1; // we need this to generate a unique id on our own
         private void SeedRole(ModelBuilder modelBuilder, string roleName, params string[] permissions)
