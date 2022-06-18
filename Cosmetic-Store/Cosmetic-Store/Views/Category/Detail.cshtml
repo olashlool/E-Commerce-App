@@ -1,0 +1,59 @@
+﻿@model Cosmetic_Store.Models.Category
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<button style="position:fixed; right:25px; bottom:25px; background-color:forestgreen; height:50px"><a style="color:aliceblue" asp-controller = "Category" asp-action= "AddProduct" asp-route-CategoryId = "@Model.CategoryId">Create New Product</a></button>
+
+<div class="card mb-3 text-center" style="display: contents">
+  <div class="row no-gutters" style="padding-top:60px">
+    <div class="col-md-4">
+      <img src="@Model.Logo" class="card-img" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title">@Model.Name</h2>
+        <p class="card-text display-4">@Model.Description</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <h4 class="text-center mb-5"><strong>All Product</strong></h4>
+
+    <div class="row">
+            @foreach (var item in Model.Products)
+            {
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
+                        <a asp-controller = "Product" asp-action= "Detail" asp-route-id ="@item.ProductId" >
+                        <img src="@item.ImageURL"
+                        class="w-100" style="height:400px"/>
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                            <div class="d-flex justify-content-start align-items-start h-100">
+                                <h4><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">@item.Price $</span></h4>
+                            </div>
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            }
+    </div>
+  </div>
+</section>
+
+
+<div>
+     <button><a asp-controller = "Category" asp-action= "Index" class="btn btn-primary btn-lg">Back</a></button> 
+     <button><a asp-controller = "Category" asp-action= "Edit" asp-route-id ="@Model.CategoryId" class="btn btn-success btn-lg">Edit</a></button>
+     <button><a asp-controller = "Category" asp-action= "Delete" asp-route-id ="@Model.CategoryId" class="btn btn-danger btn-lg">Delete</a></button>
+</div>
+
+
+
+

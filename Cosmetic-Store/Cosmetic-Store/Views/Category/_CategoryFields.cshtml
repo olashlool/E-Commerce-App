@@ -1,0 +1,34 @@
+﻿@model Cosmetic_Store.Models.Category
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+  
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Name</label>  
+  <div class="col-md-4">
+  <input class="form-control input-md" type="text" asp-for="@Model.Name">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Description</label>  
+  <div class="col-md-4">
+  <input class="form-control input-md" type="text" asp-for="@Model.Description">
+    
+  </div>
+</div>
+    
+ <!-- File Button --> 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="filebutton">Upload Image</label>
+  <div class="col-md-4">
+    <input id="filebutton" name="filebutton" class="input-file" type="file" asp-for="@Model.Logo">
+  </div>
+</div>
+
+
+
+
