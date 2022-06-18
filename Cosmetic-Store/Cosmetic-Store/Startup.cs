@@ -1,9 +1,12 @@
+using Cosmetic_Store.Auth.Model;
 using Cosmetic_Store.Data;
+using Cosmetic_Store.Models.Identity;
 using Cosmetic_Store.Models.Interface;
 using Cosmetic_Store.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,8 +37,28 @@ namespace Cosmetic_Store
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
             });
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<CosmeticDBContext>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/auth/index";
+            });
+
             services.AddTransient<ICategory, CategoryServices>();
             services.AddTransient<IProduct, ProductServices>();
+            services.AddTransient<IUserService, UserService>();
+
+            //services.AddAuthorization(options =>
+            //{
+            //    // Add "Name of Policy", and the Lambda returns a definition
+            //    options.AddPolicy("create", policy => policy.RequireClaim("permissions", "create"));
+            //    options.AddPolicy("update", policy => policy.RequireClaim("permissions", "update"));
+            //    options.AddPolicy("delete", policy => policy.RequireClaim("permissions", "delete"));
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,10 +71,14 @@ namespace Cosmetic_Store
             app.UseStaticFiles();
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 app.UseEndpoints(endpoints =>
                 {
+                    endpoints.MapRazorPages();
                     endpoints.MapControllerRoute("default", "{controller=Category}/{action=Index}");
                 });
             });

@@ -1,5 +1,6 @@
 ﻿using Cosmetic_Store.Models;
 using Cosmetic_Store.Models.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -34,7 +35,7 @@ namespace Cosmetic_Store.Controllers
         {
             return View();
         }
-
+        [Authorize(Roles = "administrator")]
         [HttpPost]
         public async Task<IActionResult> Create(Category category)
         {
@@ -52,7 +53,7 @@ namespace Cosmetic_Store.Controllers
             Category category = await _category.GetCategoryById(id);
             return View(category);
         }
-
+        [Authorize(Roles = "editor")]
         [HttpPost]
         public async Task<IActionResult> Edit(Category category)
         {
@@ -68,7 +69,7 @@ namespace Cosmetic_Store.Controllers
             Category category = await _category.GetCategoryById(id);
             return View(category);
         }
-
+        [Authorize(Roles = "administrator")]
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
