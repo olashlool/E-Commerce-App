@@ -11,16 +11,16 @@
     <p class="card-text display-6">@Model.Description</p>
     
     <a asp-controller = "Product" asp-action= "Index" class="btn btn-info btn-lg">Back</a>
-    @if (signInManager.IsSignedIn(User) && User.IsInRole("Editor"))
-    {
-        <a a asp-controller = "Product" asp-action= "Edit" asp-route-id ="@Model.ProductId" class="btn btn-success btn-lg">Edit</a>
-    }
+
     @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
     {
-        <a a asp-controller = "Product" asp-action= "Delete" asp-route-id ="@Model.ProductId" class="btn btn-danger btn-lg">Delete</a>
+        <a asp-controller = "Product" asp-action= "Edit" asp-route-id ="@Model.ProductId" class="btn btn-success btn-lg">Edit</a>
+        <a asp-controller = "Product" asp-action= "Delete" asp-route-id ="@Model.ProductId" class="btn btn-danger btn-lg">Delete</a>
     }
     </div>
   <div class="card-footer text-muted">
     <p class="card-text display-6">@Model.Price JD</p>
   </div>
+
+
 </div>

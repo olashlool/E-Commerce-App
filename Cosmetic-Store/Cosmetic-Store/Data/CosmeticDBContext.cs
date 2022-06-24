@@ -12,6 +12,8 @@ namespace Cosmetic_Store.Data
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartProduct> CartProducts { get; set; }
 
         public CosmeticDBContext(DbContextOptions options) : base(options)
         {
@@ -19,6 +21,8 @@ namespace Cosmetic_Store.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<CartProduct>().HasKey(CartProduct => new { CartProduct.CartID, CartProduct.ProductID });
 
             modelBuilder.Entity<Category>().HasData(
               new Category { CategoryId = 1, Name = "Mascara", Description = "Mascara is a makeup product that aims to lengthen, enhance, and define eyelashes.", Logo = "/images/Mascara/Mascara.PNG" },

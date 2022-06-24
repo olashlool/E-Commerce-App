@@ -88,13 +88,13 @@ namespace Cosmetic_Store.Migrations
                         {
                             Id = "abcbe9c0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ac7800be-8f24-49f6-86e5-530307a88c8c",
+                            ConcurrencyStamp = "d9d347a6-9dee-43c1-b496-291714bf4137",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFlLs5nb1tfcGU6cCruiUuK3437FOxs0MdB5BVA96Uwh7yRvQ7h4PLzPMvPTZCETBA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP7MmaPaQlq0Gp4gCTEiyLmJMJqhd9weL4Vl9ek8IbickYz3dz+3NFakpCxl2utUzA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -104,18 +104,54 @@ namespace Cosmetic_Store.Migrations
                         {
                             Id = "abcze710",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5d733e72-dac7-4184-9b10-f4e21406652d",
+                            ConcurrencyStamp = "e618e240-e9fe-4218-9a2f-6cccbdc470ca",
                             Email = "editor@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "editor@gmail.com",
                             NormalizedUserName = "editor",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIhNlFQ4gSfEgr1hG871uH5ZpYfFvpf3iFfY56EYVFXkOVQci0NMsZQDeB/D4V9dQw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHKtXjI9xuMaPgAaqqxKOWJOwsHTblSIllVQrjq+EYxQcQetxMcnW0Mqv5b1IWSYMA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "editor"
                         });
+                });
+
+            modelBuilder.Entity("Cosmetic_Store.Models.Cart", b =>
+                {
+                    b.Property<int>("CartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CartId");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("Cosmetic_Store.Models.CartProduct", b =>
+                {
+                    b.Property<int>("CartID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartID", "ProductID");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("CartProducts");
                 });
 
             modelBuilder.Entity("Cosmetic_Store.Models.Category", b =>
@@ -189,8 +225,8 @@ namespace Cosmetic_Store.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.HasKey("ProductId");
 
@@ -206,7 +242,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "Volumizing, defining | Washable | Conic nylon brush with full, soft bristles.",
                             ImageURL = "/images/Mascara/Essence.PNG",
                             Name = "Essence Mascara",
-                            Price = 5f
+                            Price = 5.0
                         },
                         new
                         {
@@ -215,7 +251,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "Defining, lengthening | Washable and waterproof versions | Skinny, low-profile brush with sparse, short bristles.",
                             ImageURL = "/images/Mascara/Maybelline.PNG",
                             Name = "Maybelline Mascara",
-                            Price = 9.5f
+                            Price = 9.5
                         },
                         new
                         {
@@ -224,7 +260,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "Lengthening, lifting | Water-resistant | Tapered silicone brush with tiered bristles",
                             ImageURL = "/images/Mascara/Glossier.PNG",
                             Name = "Glossier Mascara",
-                            Price = 16f
+                            Price = 16.0
                         },
                         new
                         {
@@ -233,7 +269,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "What glides on like butter, feels like a second skin and wont budge? Our Liquid Catsuit Matte Lipstick! Made with glammed out superpowers, it goes on glossy yet transforms into a high - pigmented matte finish with some serious staying power. Read our lips This color is going nowhere.",
                             ImageURL = "/images/Lipstick/MegaLastLiquid.PNG",
                             Name = "MegaLastLiquid Lipstick",
-                            Price = 4f
+                            Price = 4.0
                         },
                         new
                         {
@@ -242,7 +278,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "This cult-classic lipstick is the perfect combination of high-impact color in a super-moisturizing formula.",
                             ImageURL = "/images/Lipstick/Maybelline.PNG",
                             Name = "Maybelline Lipstick",
-                            Price = 5f
+                            Price = 5.0
                         },
                         new
                         {
@@ -251,7 +287,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "Satin lipstick gives a sheen like a cream lipstick but with the boldness of a matte.",
                             ImageURL = "/images/Lipstick/Satin.PNG",
                             Name = "Satin Lipstick",
-                            Price = 3f
+                            Price = 3.0
                         },
                         new
                         {
@@ -260,7 +296,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "Volumizing, defining | Washable | Conic nylon brush with full, soft bristles.",
                             ImageURL = "/images/Powder/ELF.PNG",
                             Name = "ELF Powder",
-                            Price = 7f
+                            Price = 7.0
                         },
                         new
                         {
@@ -269,7 +305,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "Volumizing, defining | Washable | Conic nylon brush with full, soft bristles.",
                             ImageURL = "/images/Powder/FitMe.PNG",
                             Name = "FitMe Powder",
-                            Price = 10f
+                            Price = 10.0
                         },
                         new
                         {
@@ -278,7 +314,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "Volumizing, defining | Washable | Conic nylon brush with full, soft bristles.",
                             ImageURL = "/images/Powder/StayMatte.PNG",
                             Name = "StayMatte Powder",
-                            Price = 15f
+                            Price = 15.0
                         },
                         new
                         {
@@ -287,7 +323,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "Up To 30 Hour Wear |Full Coverage Foundation | Light As Air Feel |Transfer Resistant |Seamless Matte Finish |Oil Free",
                             ImageURL = " /images/Foundation/Maybelline.PNG",
                             Name = "Maybelline Foundation",
-                            Price = 20f
+                            Price = 20.0
                         },
                         new
                         {
@@ -296,7 +332,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "Achieve a matte finish that won’t fall flat with this air-light, longwearing liquid formula. Lightweight and creamy, foundation goes on smooth with a demi-matte finish that lasts up to 24 hours—hiding imperfections for a smooth, clear complexion.",
                             ImageURL = "/images/Foundation/LOreal.PNG",
                             Name = "LOreal Foundation",
-                            Price = 13f
+                            Price = 13.0
                         },
                         new
                         {
@@ -305,7 +341,7 @@ namespace Cosmetic_Store.Migrations
                             Description = "This M Perfect Cover BB Cream makes your skin tone clean and chic by concealing blemishes with excellent skin coverage it is a multi functional makeup cream with blocking UV rays, whitening and wrinkle care effects and simplifies makeup formalities its moisturized application with W/S texture makes sleek skin tone while supplying moisture and nutrition at the same time.",
                             ImageURL = "/images/Foundation/Missha.PNG",
                             Name = "Missha Foundation",
-                            Price = 8f
+                            Price = 8.0
                         });
                 });
 
@@ -339,29 +375,29 @@ namespace Cosmetic_Store.Migrations
                         new
                         {
                             Id = "ad376a8ff",
-                            ConcurrencyStamp = "66d97e42-c5aa-4cbd-93fd-c0499156d84a",
+                            ConcurrencyStamp = "c5e07644-9418-4562-9252-d4fe0d1e64ad",
                             Name = "Administrator",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "bd586a8ff",
-                            ConcurrencyStamp = "e9a8abb6-cdce-49db-a73d-a267d42832c8",
+                            ConcurrencyStamp = "e513ac40-e415-42e4-b0f3-c0248a297072",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "admin",
+                            Id = "administrator",
                             ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "admin",
-                            NormalizedName = "ADMIN"
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "editor",
                             ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "editor",
+                            Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
                 });
@@ -395,14 +431,14 @@ namespace Cosmetic_Store.Migrations
                             Id = 1,
                             ClaimType = "permissions",
                             ClaimValue = "create",
-                            RoleId = "admin"
+                            RoleId = "administrator"
                         },
                         new
                         {
                             Id = 2,
                             ClaimType = "permissions",
                             ClaimValue = "delete",
-                            RoleId = "admin"
+                            RoleId = "administrator"
                         },
                         new
                         {
@@ -503,6 +539,25 @@ namespace Cosmetic_Store.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Cosmetic_Store.Models.CartProduct", b =>
+                {
+                    b.HasOne("Cosmetic_Store.Models.Cart", "Cart")
+                        .WithMany()
+                        .HasForeignKey("CartID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cosmetic_Store.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Cosmetic_Store.Models.Product", b =>

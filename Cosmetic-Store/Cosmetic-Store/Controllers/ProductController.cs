@@ -8,16 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 
+
 namespace Cosmetic_Store.Controllers
 {
     public class ProductController : Controller
     {
         private readonly IProduct _product;
-        IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
-        public ProductController(IProduct product)
+        public ProductController(IProduct product, IConfiguration configuration)
         {
             _product = product;
+            _configuration = configuration;
         }
 
         public async Task<IActionResult> Index()
@@ -66,7 +68,7 @@ namespace Cosmetic_Store.Controllers
             Product updateProduct = await _product.GetProductById(id);
             return View(updateProduct);
         }
-        [Authorize(Roles = "Editor")]
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         // -http://localhost:22304/Product/Update?id=11
         public async Task<IActionResult> Edit(Product product, IFormFile file)

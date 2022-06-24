@@ -15,19 +15,11 @@ namespace Cosmetic_Store.Models.Services
         {
             _context = context;
         }
-        public async Task<Product> CreateProduct(Product product)
+        public async Task<Product> CreateProduct(Product product )
         {
-            var newProduct = new Product
-            {
-                ProductId = product.ProductId,
-                Description = product.Description,
-                Name = product.Name,
-                Price = product.Price,
-                ImageURL = product.ImageURL
-            };
-            _context.Entry(newProduct).State = EntityState.Added;
+            _context.Entry(product).State = EntityState.Added;
             await _context.SaveChangesAsync();
-            return newProduct;
+            return product;
         }
 
         public async Task DeleteProduct(int id)

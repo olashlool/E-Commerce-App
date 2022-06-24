@@ -3,7 +3,7 @@
 
 @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
 {
-    <button style="position:fixed; right:25px; bottom:25px; background-color:forestgreen; height:50px"><a style="color:aliceblue" asp-controller = "Category" asp-action= "Create"> Create New Category</a></button>
+        <a style="color:aliceblue; position:fixed; right:25px; bottom:25px; background-color:forestgreen; height:50px;text-transform: uppercase;padding-top: 17px;" asp-controller = "Category" asp-action= "Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Create New Category</a>
 }
 <section style="background-color: #eee;">
   <div class="text-center container py-5">
