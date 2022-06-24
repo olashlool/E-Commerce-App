@@ -23,7 +23,7 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" >
       <div >
-        <a class="navbar-brand" href="/Catergories/Category">
+        <a class="navbar-brand" href="/Category/Index">
           <h1 style="color:aliceblue">Cosmetic Store</h1> 
         </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,9 @@
         </li>
            @if (SignInManager.IsSignedIn(User))
            {
+                <li class="nav-item">
+               <h2><a class="nav-link" href="/Shop/Cart" style="padding-top:10px; position:absolute;">My Cart</a></h2>
+               </li>
                <li class="nav-item">
                <h2><a class="nav-link" href="#" style="padding-top:10px; position:absolute; top:10px; right:100px">Hello, @UserManager.GetUserName(User)!</a></h2>
                </li>
@@ -51,6 +54,9 @@
            }
            else
            {
+               <li class="nav-item">
+               <h2><a class="nav-link" href="/Accounts/Login" style="padding-top:10px; position:absolute;">My Cart</a></h2>
+               </li>
                <li class="nav-item">
                <h2><a class="nav-link" href="/Accounts/Register" style="padding-top:10px; position:absolute; top:10px; right:100px">Sign Up</a></h2>
                </li>

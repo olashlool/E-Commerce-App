@@ -41,9 +41,15 @@
     {
         <form method="post" asp-page-handle="/shop/cart">
             <button type="submit" class="add-to-cart-button btn btn-success btn-lg">Add to Cart</button>
-        </form>
-    }
-  </div>
+                </form>
+            }
+            else
+            {
+               <form method="post" asp-page-handle="/shop/cart">
+            <button type="submit" class="add-to-cart-button btn btn-success btn-lg">Add to Cart</button>
+                </form> 
+            }
+        </div>
 
 
 </div>
