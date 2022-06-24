@@ -13,14 +13,12 @@ namespace Cosmetic_Store.Controllers
     public class CategoryController : Controller
     {
         private readonly ICategory _category;
-        private readonly IProduct _product;
-        IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
 
-        public CategoryController(ICategory category, IProduct product, IConfiguration configuration)
+        public CategoryController(ICategory category, IConfiguration configuration)
         {
             _category = category;
-            _product = product;
             _configuration = configuration; 
         }
         public async Task<IActionResult> Index()
@@ -33,11 +31,7 @@ namespace Cosmetic_Store.Controllers
             var category = await _category.GetCategoryById(id);
             return View(category);
         }
-        public async Task<IActionResult> DetailProduct(int id)
-        {
-            var product = await _product.GetProductById(id);
-            return View(product);
-        }
+
         public IActionResult Create()
         {
             return View();
@@ -76,7 +70,7 @@ namespace Cosmetic_Store.Controllers
             Category category = await _category.GetCategoryById(id);
             return View(category);
         }
-        [Authorize(Roles = "Editor")]
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public async Task<IActionResult> Edit(Category category, IFormFile file)
         {

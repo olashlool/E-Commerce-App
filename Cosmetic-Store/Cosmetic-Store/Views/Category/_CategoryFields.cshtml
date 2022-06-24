@@ -8,7 +8,7 @@
   <label class="col-md-4 control-label" >Name</label>  
   <div class="col-md-4">
   <input class="form-control input-md" type="text" asp-for="@Model.Name">
-    
+    <span asp-validation-for="Name" class="text-danger"></span>
   </div>
 </div>
 
@@ -17,7 +17,7 @@
   <label class="col-md-4 control-label" >Description</label>  
   <div class="col-md-4">
   <input class="form-control input-md" type="text" asp-for="@Model.Description">
-    
+    <span asp-validation-for="Description" class="text-danger"></span>
   </div>
 </div>
     
@@ -26,6 +26,7 @@
   <label class="col-md-4 control-label" for="filebutton">Upload Image</label>
   <div class="col-md-4">
     <input id="filebutton" name="file" class="input-file" type="file" asp-for="@Model.Logo">
+    <span asp-validation-for="Logo" class="text-danger"></span>
   </div>
 </div>
 

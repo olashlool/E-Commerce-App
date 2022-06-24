@@ -3,7 +3,7 @@
 
 @if (signInManager.IsSignedIn(User) && (User.IsInRole("Administrator")||User.IsInRole("Editor")))
 {
-    <button style="position:fixed; right:25px; bottom:25px; background-color:forestgreen; height:50px"><a style="color:aliceblue" asp-controller = "Product" asp-action= "Create">Create New Product</a></button>
+    <a style="color:aliceblue; position:fixed; right:25px; bottom:25px; background-color:forestgreen; height:50px;text-transform: uppercase;padding-top: 17px;" asp-controller = "Product" asp-action= "Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Create New Product</a>
 }
 <section style="background-color: #eee;">
   <div class="container py-5">
@@ -14,7 +14,22 @@
             {
                 <div class="col-lg-4 col-md-12 mb-4">
                     <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-                        <a asp-controller = "Product" asp-action= "Detail" asp-route-id =@item.ProductId >
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("Administrator")))
+                        {
+                            <a asp-controller = "Product" asp-action= "Detail" asp-route-id ="@item.ProductId" >
+                            <img src="@item.ImageURL"
+                            class="w-100" style="height:400px"/>
+                            <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                                <div class="d-flex justify-content-start align-items-start h-100">
+                                    <h4><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">@item.Price $</span></h4>
+                                </div>
+                            </div>
+                            <div class="hover-overlay">
+                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                            </div>
+                            </a>
+                        }
+                        <a asp-page="/Shop/Product" asp-route-ID="@item.ProductId" >
                         <img src="@item.ImageURL"
                         class="w-100" style="height:400px"/>
                         <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">

@@ -30,6 +30,9 @@
             {
                 <div class="col-lg-4 col-md-12 mb-4">
                     <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
+
+                        @if(signInManager.IsSignedIn(User) && (User.IsInRole("Administrator")))
+                        {
                         <a asp-controller = "Product" asp-action= "Detail" asp-route-id ="@item.ProductId" >
                         <img src="@item.ImageURL"
                         class="w-100" style="height:400px"/>
@@ -42,6 +45,22 @@
                             <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
                         </div>
                         </a>
+                        }else
+                        {
+                             <a asp-page="/Shop/Product" asp-route-ID="@item.ProductId" >
+                             <img src="@item.ImageURL"
+                             class="w-100" style="height:400px"/>
+                             <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                                 <div class="d-flex justify-content-start align-items-start h-100">
+                                     <h4><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">@item.Price $</span></h4>
+                                 </div>
+                             </div>
+                             <div class="hover-overlay">
+                                 <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                             </div>
+                             </a>
+                        }
+
                     </div>
                 </div>
             }
@@ -52,12 +71,10 @@
 
 <div>
      <button><a asp-controller = "Category" asp-action= "Index" class="btn btn-primary btn-lg">Back</a></button> 
-     @if (signInManager.IsSignedIn(User) && User.IsInRole("Editor"))
-    {
-        <button><a asp-controller = "Category" asp-action= "Edit" asp-route-id ="@Model.CategoryId" class="btn btn-success btn-lg">Edit</a></button>
-    }
+
     @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
     {
+        <button><a asp-controller = "Category" asp-action= "Edit" asp-route-id ="@Model.CategoryId" class="btn btn-success btn-lg">Edit</a></button>
         <button><a asp-controller = "Category" asp-action= "Delete" asp-route-id ="@Model.CategoryId" class="btn btn-danger btn-lg">Delete</a></button>
     }
 </div>
