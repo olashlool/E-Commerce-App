@@ -55,6 +55,11 @@ namespace Cosmetic_Store.Pages.Shop
         public async Task<IActionResult> OnPost(int id)
         {
             var user = await _userManager.GetUserAsync(User);
+            if(user == null)
+            {
+                return Redirect("/Accounts/Login");
+
+            }
             var cart = await _shop.GetCartByUserId(user.Id);
             if (ModelState.IsValid)
             {
