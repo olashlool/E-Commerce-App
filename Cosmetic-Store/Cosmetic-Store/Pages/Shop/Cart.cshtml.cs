@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Cosmetic_Store.Pages.Shop
@@ -25,10 +26,16 @@ namespace Cosmetic_Store.Pages.Shop
 
         public async Task OnGet() //  method to process the default GET request
         {
+            var cart = new Cart
+            {
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            };
+            await _shop.CreateCart(cart);
             ApplicationUser user = await _userManager.GetUserAsync(User);
             CartProducts = await _shop.GetCartProductByUserId(user.Id);
+
+
         }
-        [HttpPost]
         public async Task<IActionResult> OnPostUpdate(int id)
         {
             int updatedQuantity = Convert.ToInt32(Request.Form["Quantity"]);
@@ -40,7 +47,6 @@ namespace Cosmetic_Store.Pages.Shop
 
             return RedirectToPage();
         }
-        [HttpPost]
         public async Task<IActionResult> OnPostDelete(int id)
         {
             ApplicationUser user = await _userManager.GetUserAsync(User);

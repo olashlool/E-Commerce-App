@@ -40,13 +40,13 @@
     @if (signInManager.IsSignedIn(User))
     {
         <form method="post" asp-page-handle="/shop/cart">
-            <button type="submit" class="add-to-cart-button btn btn-success btn-lg">Add to Cart</button>
+            <button type="submit" class="add-to-cart-button btn btn-success btn-lg"><i class="bi bi-cart3"></i> Add to Cart</button>
                 </form>
             }
             else
             {
                <form method="post" asp-page-handle="/shop/cart">
-            <button type="submit" class="add-to-cart-button btn btn-success btn-lg">Add to Cart</button>
+            <button type="submit" class="add-to-cart-button btn btn-success btn-lg"> <i class="bi bi-cart3"></i> Add to Cart</button>
                 </form> 
             }
         </div>
