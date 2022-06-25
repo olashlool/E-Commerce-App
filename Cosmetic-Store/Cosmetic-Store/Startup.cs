@@ -55,6 +55,7 @@ namespace Cosmetic_Store
             services.AddTransient<IProduct, ProductServices>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IShop, ShopServices>();
+            services.AddTransient<IEmail, EmailServices>();
 
 
             services.AddAuthorization(options =>
