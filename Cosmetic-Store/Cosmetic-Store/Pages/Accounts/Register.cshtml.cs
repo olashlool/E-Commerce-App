@@ -10,7 +10,7 @@ namespace Cosmetic_Store.Pages.Accounts
     public class RegisterModel : PageModel
     {
         private readonly IUserService userService;
-        private IEmail _email;
+        private readonly IEmail _email;
 
 
         public RegisterModel(IUserService userSer , IEmail email)

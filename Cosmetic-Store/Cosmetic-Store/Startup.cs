@@ -58,12 +58,18 @@ namespace Cosmetic_Store
             services.AddTransient<IEmail, EmailServices>();
 
 
+            //services.AddAuthorization(options =>
+            //{
+            //    // Add "Name of Policy", and the Lambda returns a definition
+            //    options.AddPolicy("create", policy => policy.RequireClaim("permissions", "create"));
+            //    options.AddPolicy("update", policy => policy.RequireClaim("permissions", "update"));
+            //    options.AddPolicy("delete", policy => policy.RequireClaim("permissions", "delete"));
+            //});
+
+            // Add my policy
             services.AddAuthorization(options =>
             {
-                // Add "Name of Policy", and the Lambda returns a definition
-                options.AddPolicy("create", policy => policy.RequireClaim("permissions", "create"));
-                options.AddPolicy("update", policy => policy.RequireClaim("permissions", "update"));
-                options.AddPolicy("delete", policy => policy.RequireClaim("permissions", "delete"));
+                options.AddPolicy("AdminOnly", policy => policy.RequireRole("Administrator"));
             });
         }
 

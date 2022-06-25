@@ -8,6 +8,10 @@ namespace Cosmetic_Store.Models.Components
 {
     public class MiniCartViewComponent : ViewComponent
     {
+        /* - The MiniCartViewComponent class inherits ViewComponent class then brings in dependencies
+           - The InvokeAsync method utilizes UserManager to bring in the user and call GetUserId to access the user id
+           - A variable is created to store all the cart items of the user by calling GetCartItemsByUserIdAsync that takes an user id and returns all the cart items where the items, user id matches.*/
+
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IShop _shop;
     
