@@ -84,14 +84,14 @@ namespace Cosmetic_Store.Pages.Checkout
 
                 double finalCost = total * 1.1;
 
-                //string subject = "Purhcase Summary From Cosmetic Store!";
-                //string message =
-                //    $"<p>Hello {user.UserName},</p>" +
-                //    $"<p>&nbsp;</p>" +
-                //    $"<p>Below is your recent purchase summary</p>" +
-                //    $"<p>Total: ${finalCost.ToString("F")}\n</p>" + "<a href=\"https://dotnet-ecommerce-tiny-plants.azurewebsites.net\">Click here to shop more!<a>";
+                string subject = "Purhcase Summary From Cosmetic Store!";
+                string message =
+                    $"<p>Hello {user.UserName},</p>" +
+                    $"<p>&nbsp;</p>" +
+                    $"<p>Below is your recent purchase summary</p>" +
+                    $"<p>Total: ${finalCost.ToString("F")}\n</p>" + "<a href=\"https://dotnet-ecommerce-tiny-plants.azurewebsites.net\">Click here to shop more!<a>";
 
-                //await _email.SendEmailAsync(user.Email, subject, message);
+                await _email.SendEmailAsync(user.Email, subject, message);
                 foreach (var item in orderItems)
                 {
                     await _order.CreateOrderItem(item);

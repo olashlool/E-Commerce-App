@@ -25,6 +25,8 @@ namespace Cosmetic_Store.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<CartProduct>().HasKey(CartProduct => new { CartProduct.CartID, CartProduct.ProductID });
+            modelBuilder.Entity<OrderItems>().HasKey(OrderItems => new { OrderItems.OrderID, OrderItems.ProductID });
+
 
             modelBuilder.Entity<Category>().HasData(
               new Category { CategoryId = 1, Name = "Mascara", Description = "Mascara is a makeup product that aims to lengthen, enhance, and define eyelashes.", Logo = "/images/Mascara/Mascara.PNG" },
