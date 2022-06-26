@@ -1,4 +1,4 @@
-﻿@model Cosmetic_Store.Models.Product
+﻿@model Cosmetic_Store.Models.ViewModel.ProductVM
 
 
 <form class="form-horizontal" asp-controller="Product" asp-action="Create" method="post" style="padding-top:80px" enctype="multipart/form-data">       
@@ -16,8 +16,6 @@
             <a asp-controller = "Product" asp-action= "Index"> Back</a>  </div>
     </div>
     
-@*  <partial name="SelectCate"></partial>
-*@
 
 </fieldset>
 </form>

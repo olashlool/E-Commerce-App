@@ -1,4 +1,4 @@
-﻿@model Cosmetic_Store.Models.Product  
+﻿@model Cosmetic_Store.Models.ViewModel.ProductVM  
 
 <!-- Text input-->
 <div class="form-group">
@@ -29,14 +29,13 @@
     
   </div>
 </div>
-    
-@*<select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
-*@
+
+   
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" >ID</label>  
   <div class="col-md-4">
-  <input class="form-control input-md" type="text" asp-for="@Model.CategoryId">
+        @Html.DropDownListFor(model => model.CategoryId, new SelectList(Model.Categories, "CategoryId", "Name"),
+        "Select category", new { @class = "form-control" })
     <span asp-validation-for="CategoryId" class="text-danger"></span>
     
   </div>
@@ -46,8 +45,8 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="filebutton">Upload Image</label>
   <div class="col-md-4">
-    <input id="filebutton" name="file" class="input-file" type="file" asp-for="@Model.ImageURL">
-    <span asp-validation-for="ImageURL" class="text-danger"></span>
+    <input id="filebutton" name="file" class="input-file" type="file" asp-for="@Model.ImageUrl">
+    <span asp-validation-for="ImageUrl" class="text-danger"></span>
 
   </div>
 </div>

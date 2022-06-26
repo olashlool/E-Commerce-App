@@ -31,12 +31,11 @@ namespace Cosmetic_Store.Controllers
             var category = await _category.GetCategoryById(id);
             return View(category);
         }
-
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
         }
-        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public async Task<IActionResult> Create(Category category, IFormFile file)
         {
@@ -63,14 +62,13 @@ namespace Cosmetic_Store.Controllers
             }
             return View(category);
         }
-
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
 
             Category category = await _category.GetCategoryById(id);
             return View(category);
         }
-        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public async Task<IActionResult> Edit(Category category, IFormFile file)
         {
@@ -97,12 +95,12 @@ namespace Cosmetic_Store.Controllers
             }
             return View(category);
         }
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int id)
         {
             Category category = await _category.GetCategoryById(id);
             return View(category);
         }
-        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

@@ -7,28 +7,17 @@
     <table class="table">
         <thead class="text-center">
             <tr>
-                <th>
-                    Item
-                </th>
-
-                <th>
-                    Name
-                </th>
-                <th>
-                    Quantity
-                </th>
-                <th>
-                    Total
-                </th>
+                <th> Item </th>
+                <th> Name </th>
+                <th> Quantity </th>
+                <th> Total </th>
             </tr>
         </thead>
         @if (@Model.Count() == 0)
         {
             <tbody>
                 <tr class="text-center">
-                    <td colspan="4">
-                        Shopping Cart Is Empty
-                    </td>
+                    <td colspan="4"> Shopping Cart Is Empty </td>
                 </tr>
             </tbody>
         }
@@ -48,7 +37,7 @@
                             @item.Quantity
                         </td>
                         <td>
-                            $ @(item.Quantity * item.Product.Price)
+                            @(item.Quantity * item.Product.Price) JD
                         </td>
                     </tr>
                 }

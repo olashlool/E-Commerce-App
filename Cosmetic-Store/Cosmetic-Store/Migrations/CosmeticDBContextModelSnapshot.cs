@@ -88,13 +88,13 @@ namespace Cosmetic_Store.Migrations
                         {
                             Id = "abcbe9c0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d9d347a6-9dee-43c1-b496-291714bf4137",
+                            ConcurrencyStamp = "896f21fc-7998-4206-92c5-35ae0c6c1b4a",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP7MmaPaQlq0Gp4gCTEiyLmJMJqhd9weL4Vl9ek8IbickYz3dz+3NFakpCxl2utUzA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDW1Wi+lxluc6E3rdMH6iD+kNvSB6ztEntheHP7jIp6odAk8D/tUT5SsMqrVKhR8EA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -104,13 +104,13 @@ namespace Cosmetic_Store.Migrations
                         {
                             Id = "abcze710",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e618e240-e9fe-4218-9a2f-6cccbdc470ca",
+                            ConcurrencyStamp = "88137585-9fcc-4e21-8a22-b7561ca8fbd6",
                             Email = "editor@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "editor@gmail.com",
                             NormalizedUserName = "editor",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHKtXjI9xuMaPgAaqqxKOWJOwsHTblSIllVQrjq+EYxQcQetxMcnW0Mqv5b1IWSYMA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEETdvxc/BVf/6+n5Kiv30CW5ddOolQ9KWCRZJz29LBgyQYreajpEWzxs2i2m8STZVg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -203,6 +203,73 @@ namespace Cosmetic_Store.Migrations
                             Logo = "/images/Foundation/Foundation.PNG",
                             Name = "Foundation"
                         });
+                });
+
+            modelBuilder.Entity("Cosmetic_Store.Models.Order", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreditCard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Timestamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Zip")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("Cosmetic_Store.Models.OrderItems", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrderID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("OrderID");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Cosmetic_Store.Models.Product", b =>
@@ -375,14 +442,14 @@ namespace Cosmetic_Store.Migrations
                         new
                         {
                             Id = "ad376a8ff",
-                            ConcurrencyStamp = "c5e07644-9418-4562-9252-d4fe0d1e64ad",
+                            ConcurrencyStamp = "84d9d096-58d7-4d83-a123-18c0f40697b9",
                             Name = "Administrator",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "bd586a8ff",
-                            ConcurrencyStamp = "e513ac40-e415-42e4-b0f3-c0248a297072",
+                            ConcurrencyStamp = "861bd4f4-a521-4502-a066-240687a90c72",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
@@ -556,6 +623,25 @@ namespace Cosmetic_Store.Migrations
                         .IsRequired();
 
                     b.Navigation("Cart");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Cosmetic_Store.Models.OrderItems", b =>
+                {
+                    b.HasOne("Cosmetic_Store.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cosmetic_Store.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("Product");
                 });

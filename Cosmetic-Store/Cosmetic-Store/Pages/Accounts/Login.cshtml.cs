@@ -11,13 +11,11 @@ namespace Cosmetic_Store.Pages.Accounts
     public class LoginModel : PageModel
     {
         private readonly IUserService userService;
-        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public LoginModel(IUserService userSer, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public LoginModel(IUserService userSer, UserManager<ApplicationUser> userManager)
         {
             userService = userSer;
-            _signInManager = signInManager;
             _userManager = userManager;
         }
         [BindProperty]
@@ -52,7 +50,7 @@ namespace Cosmetic_Store.Pages.Accounts
                 return Page();
 
             }
-            
-        } 
-    } 
+
+        }
+    }
 }

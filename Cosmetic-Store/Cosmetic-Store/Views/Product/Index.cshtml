@@ -14,7 +14,7 @@
             {
                 <div class="col-lg-4 col-md-12 mb-4">
                     <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("Administrator")))
+@*                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("Administrator")))
                         {
                             <a asp-controller = "Product" asp-action= "Detail" asp-route-id ="@item.ProductId" >
                             <img src="@item.ImageURL"
@@ -28,7 +28,7 @@
                                 <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
                             </div>
                             </a>
-                        }else{
+                        }else{*@
                         <a asp-page="/Shop/Product" asp-route-ID="@item.ProductId" >
                         <img src="@item.ImageURL"
                         class="w-100" style="height:400px"/>
@@ -41,7 +41,6 @@
                             <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
                         </div>
                         </a>
-                        }
                     </div>
                 </div>
             }
