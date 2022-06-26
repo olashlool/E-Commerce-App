@@ -67,7 +67,8 @@ Register
 ![Home](Cosmetic-Store/Cosmetic-Store/wwwroot/Visuals/Register.png)
 Login
 ![Home](Cosmetic-Store/Cosmetic-Store/wwwroot/Visuals/Login.png)
-
+Email
+![Home](Cosmetic-Store/Cosmetic-Store/wwwroot/Visuals/email.png)
 ### Shop
 Product index 
 ![Home](Cosmetic-Store/Cosmetic-Store/wwwroot/Visuals/Product.png)
