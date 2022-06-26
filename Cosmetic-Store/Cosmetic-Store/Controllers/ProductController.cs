@@ -76,6 +76,7 @@ namespace Cosmetic_Store.Controllers
         public async Task<IActionResult> Edit(int id)    
         {
             Product updateProduct = await _product.GetProductById(id);
+
             return View(updateProduct);
         }
         [HttpPost]
