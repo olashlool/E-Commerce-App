@@ -32,14 +32,14 @@ namespace Cosmetic_Store.Pages.Accounts
                 Email = Register.Email
             };
 
-            //string subject = "Welcome to Cosmetic Store!";
-            //string message =
-            //    $"<p>Hello {newuser.UserName}, </p>" +
-            //    $"<p>&nbsp;</p>" +
-            //    $"<p>Welcome to Cosmetic Store! You have successfully created a new account.</p>" +
-            //    $"<p>At Cosmetic Store, we provides unique and beautiful product for you to choose from!\n</p>" + "<a href=\"https://cosmetic-storeapp.azurewebsites.net/\">Start shoping now!<a>";
+            string subject = "Welcome to Cosmetic Store!";
+            string message =
+                $"<p>Hello {newuser.UserName}, </p>" +
+                $"<p>&nbsp;</p>" +
+                $"<p>Welcome to Cosmetic Store! You have successfully created a new account.</p>" +
+                $"<p>At Cosmetic Store, we provides unique and beautiful product for you to choose from!\n</p>" + "<a href=\"https://cosmetic-storeapp.azurewebsites.net/\">Start shoping now!<a>";
 
-            //await _email.SendEmailAsync(newuser.Email, subject, message);
+            await _email.SendEmailAsync(newuser.Email, subject, message);
 
             await userService.Register(newuser, this.ModelState);
 
