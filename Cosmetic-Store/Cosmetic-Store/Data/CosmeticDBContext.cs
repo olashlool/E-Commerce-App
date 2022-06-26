@@ -14,6 +14,8 @@ namespace Cosmetic_Store.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartProduct> CartProducts { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderItems> OrderItems { get; set; }
 
         public CosmeticDBContext(DbContextOptions options) : base(options)
         {

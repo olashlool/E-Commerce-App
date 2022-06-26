@@ -55,8 +55,13 @@ namespace Cosmetic_Store
             services.AddTransient<IProduct, ProductServices>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IShop, ShopServices>();
+            services.AddTransient<IOrder, OrderServices>();
             services.AddTransient<IEmail, EmailServices>();
 
+            services.ConfigureApplicationCookie(options =>{
+                options.AccessDeniedPath = new PathString("/Accounts/AccessDenied");
+
+            });
 
             //services.AddAuthorization(options =>
             //{
@@ -85,7 +90,7 @@ namespace Cosmetic_Store
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 app.UseEndpoints(endpoints =>

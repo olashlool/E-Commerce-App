@@ -3,6 +3,7 @@ using Cosmetic_Store.Models.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace Cosmetic_Store.Models.Components
 {
@@ -23,7 +24,7 @@ namespace Cosmetic_Store.Models.Components
     
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var userId = _userManager.GetUserId((System.Security.Claims.ClaimsPrincipal)User);
+            var userId = _userManager.GetUserId((ClaimsPrincipal)User);
             var cartItems = await _shop.GetCartProductByUserId(userId);
     
             return View(cartItems);

@@ -89,7 +89,6 @@ C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\n
 C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\Razor\Pages\Accounts\Register.cshtml.g.cs
 C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\Razor\Pages\Admin\Index.cshtml.g.cs
 C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\Razor\Pages\Shop\Cart.cshtml.g.cs
-C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\Razor\Pages\Shop\Index.cshtml.g.cs
 C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\Razor\Pages\Shop\Product.cshtml.g.cs
 C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\Razor\Pages\_LayoutPage.cshtml.g.cs
 C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\Razor\Pages\_ViewStart.cshtml.g.cs
@@ -122,3 +121,7 @@ C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\n
 C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\ref\Cosmetic-Store.dll
 C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\bin\Debug\net5.0\SendGrid.dll
 C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\bin\Debug\net5.0\StarkbankEcdsa.dll
+C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\Razor\Pages\Orders\Detail.cshtml.g.cs
+C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\Razor\Pages\Orders\Index.cshtml.g.cs
+C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\Razor\Pages\Checkout\Index.cshtml.g.cs
+C:\Users\olash\Pictures\E-Commerce-App\Cosmetic-Store\Cosmetic-Store\obj\Debug\net5.0\Razor\Pages\Accounts\AccessDenied.cshtml.g.cs
