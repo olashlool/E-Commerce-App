@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cosmetic_Store.Models.ViewModel
@@ -13,7 +14,5 @@ namespace Cosmetic_Store.Models.ViewModel
         public string ImageUrl { get; set; }
         public int CategoryId { get; set; }
         public IEnumerable<Category> Categories { get; set; }
-
-
     }
 }

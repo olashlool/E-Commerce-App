@@ -26,23 +26,17 @@ namespace Cosmetic_Store.Pages.Checkout
             _order = order;
         }
 
-        /// <summary>
-        /// Bind the Input object that contains all the required information for checkout to the property
-        /// </summary>
-        [BindProperty]
+        // Bind the Input object that contains all the required information for checkout to the property        [BindProperty]
         public CheckoutInput Input { get; set; }
 
         public void OnGet()
         {
         }
 
-        /// <summary>
-        /// This post operation uses UserManager to get the current signed in user
-        /// Set a variable to store the total costs of all items in the cart
-        /// Set variables to store email contents for an order summary email that is to be sent out to a user after they check out
-        /// After the email is sent out, redirect the user to receipt page
-        /// </summary>
-        /// <returns>If the ckeckout process is successful, redirect to the receipt page. Otherwise, returns to the same page</returns>
+        // This post operation uses UserManager to get the current signed in user
+        // Set a variable to store the total costs of all items in the cart
+        // Set variables to store email contents for an order summary email that is to be sent out to a user after they check out
+        // After the email is sent out, redirect the user to receipt page
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
